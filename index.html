@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#993d33">
+  <meta name="description" content="习思想教材配套章节练习：204道选择题，逐题反馈与详细解析，自动保存进度并汇总错题。">
+  <title>习思想章节练习</title>
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script src="questions.js" defer></script>
+  <script src="core.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到题目</a>
+  <header class="topbar">
+    <a class="brand" href="#" data-action="practice" aria-label="习思想章节练习首页">
+      <span class="brand-icon"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 6C9 3.8 5.5 3.8 2.8 4.6v14c3-.8 6.2-.5 9.2 1.4 3-1.9 6.2-2.2 9.2-1.4v-14C18.5 3.8 15 3.8 12 6Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M12 6v14" stroke="currentColor" stroke-width="1.7"/></svg></span>
+      <span>习思想<span class="brand-sub">章节练习</span></span>
+    </a>
+    <nav class="topnav" aria-label="主要功能">
+      <button data-action="practice" id="practiceTab" class="nav-tab active">章节练习</button>
+      <button data-action="library" id="libraryTab" class="nav-tab">错题库 <span id="wrongTotal" class="count-badge">0</span></button>
+    </nav>
+    <span class="top-note">作答 · 反馈 · 理解</span>
+  </header>
+  <div class="app-layout">
+    <aside class="sidebar" aria-label="章节目录">
+      <div class="sidebar-heading"><span>章节目录</span><span class="small-label">8 章</span></div>
+      <nav id="chapterList" aria-label="选择章节"></nav>
+      <div class="sidebar-progress">
+        <div class="progress-caption"><span>全部练习进度</span><strong id="overallCount">0 / 204</strong></div>
+        <div class="progress-track" role="progressbar" aria-label="全部练习进度" id="overallProgress" aria-valuemin="0" aria-valuemax="204" aria-valuenow="0"><div id="overallBar"></div></div>
+        <p id="storageNote"><span class="saved-dot"></span>进度自动保存在当前浏览器</p>
+      </div>
+    </aside>
+    <main id="main" tabindex="-1">
+      <div class="mobile-chapter"><label for="chapterSelect">选择章节</label><select id="chapterSelect"></select></div>
+      <section id="practiceView">
+        <div class="chapter-heading">
+          <div><p class="eyebrow" id="chapterEyebrow">导论 / 章节练习</p><h1 id="chapterTitle">导论</h1><p id="chapterMeta" class="chapter-meta"></p></div>
+          <div class="chapter-counter"><span>本章已答</span><div><strong id="chapterDone">0</strong><span id="chapterTotal">/ 22</span></div></div>
+        </div>
+        <div class="toolbar">
+          <div class="segmented" aria-label="题型筛选">
+            <button data-action="type" data-value="all" aria-pressed="true">全部题型</button>
+            <button data-action="type" data-value="single" aria-pressed="false">单选题</button>
+            <button data-action="type" data-value="multiple" aria-pressed="false">多选题</button>
+          </div>
+          <div class="mode-controls">
+            <button data-action="order" id="orderButton" class="plain-button" aria-pressed="false"><span aria-hidden="true">⇄</span> 随机练习</button>
+            <button data-action="wrong-mode" id="wrongModeButton" class="plain-button" aria-pressed="false">重练本章错题</button>
+          </div>
+        </div>
+        <div class="practice-layout">
+          <section id="questionArea" aria-label="练习题"></section>
+          <aside class="question-aside">
+            <section class="palette-card"><div class="palette-heading"><h2>答题卡</h2><span id="queueCount"></span></div><div id="palette" class="palette"></div><div class="legend"><span><i></i>未答</span><span><i class="green"></i>答对</span><span><i class="red"></i>答错</span></div></section>
+            <section class="tips-card"><h2>练习方式</h2><p>单选题点击选项即显示答案。多选题勾选后，点击“提交答案”。</p><p>阅读解析后，再进入下一题。答错的题会自动收进错题库。</p><div class="shortcut">A–E 选择选项<br>Enter 提交 / 下一题</div></section>
+          </aside>
+        </div>
+        <p class="source-note">题目与原文参考答案来自上传的八份练习文档。解析结合教材知识点及相关公开资料补充。</p>
+      </section>
+      <section id="libraryView" hidden>
+        <div class="chapter-heading"><div><p class="eyebrow">复习 / 错题汇总</p><h1>我的错题库</h1><p class="chapter-meta">每次答错都会收录。重练答对后标记“已掌握”，记录仍可查看。</p></div><div class="chapter-counter"><span>累计收录</span><div><strong id="libraryCount">0</strong><span>题</span></div></div></div>
+        <div class="library-toolbar"><label for="libraryChapter" class="sr-only">按章节查看错题</label><select id="libraryChapter"></select><div class="segmented" aria-label="错题状态筛选"><button data-action="library-filter" data-value="all" aria-pressed="true">全部错题</button><button data-action="library-filter" data-value="unmastered" aria-pressed="false">待巩固</button><button data-action="library-filter" data-value="mastered" aria-pressed="false">已掌握</button></div></div>
+        <div id="libraryList"></div>
+      </section>
+    </main>
+  </div>
+  <div id="announcement" class="sr-only" role="status" aria-live="polite"></div>
+  <noscript><p class="noscript">请开启浏览器 JavaScript，以使用选择题练习和错题库。</p></noscript>
+</body>
+</html>
