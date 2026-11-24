@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#cf1327">
+  <meta name="description" content="习概期末复习，覆盖2023版教材第1—17章。章节选择题、错题专项、知识点检索和课后思考题分点速记。">
+  <title>习概期末复习 · 17章题库</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="study-bank.js" defer></script>
+  <script src="practice-core.js" defer></script>
+  <script src="review.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#content">跳到主要内容</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#home">
+        <span class="brand-mark" aria-hidden="true">习</span>
+        <span>习概期末复习</span>
+      </a>
+      <nav class="site-nav" aria-label="主要功能">
+        <a href="#home" data-view="home">章节刷题</a>
+        <a href="#wrong" data-view="wrong">错题库 <span id="wrong-count" class="count" hidden></span></a>
+        <a href="#knowledge" data-view="knowledge">知识点</a>
+        <a href="#thoughts" data-view="thoughts">课后思考题</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page" id="content" tabindex="-1">
+    <noscript><p>请在浏览器中启用 JavaScript 后使用题库。</p></noscript>
+    <p id="loading" class="loading" role="status">正在载入期末题库…</p>
+  </main>
+
+  <footer class="site-footer">
+    <div>
+      <p>《习近平新时代中国特色社会主义思想概论》（2023版）</p>
+      <p id="storage-message">学习进度保存在此浏览器。</p>
+    </div>
+    <div class="sources">
+      <a href="https://maogai.szhopc.cn/" target="_blank" rel="noopener noreferrer">原站习思想题库</a>
+      <a href="https://app.www.gov.cn/govdata/gov/202210/25/493662/article.html" target="_blank" rel="noopener noreferrer">党的二十大报告</a>
+    </div>
+  </footer>
+
+  <dialog class="confirm-dialog" id="restart-dialog" aria-labelledby="restart-title">
+    <form method="dialog">
+      <h2 id="restart-title">重练本章</h2>
+      <p id="restart-detail"></p>
+      <div class="actions">
+        <button class="button secondary" value="cancel" autofocus>取消</button>
+        <button class="button primary" value="restart">确认重练</button>
+      </div>
+    </form>
+  </dialog>
+  <div class="notice" id="notice" role="status" aria-live="polite" hidden></div>
+</body>
+</html>
